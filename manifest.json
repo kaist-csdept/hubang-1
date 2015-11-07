@@ -1,0 +1,21 @@
+{
+  "manifest_version": 2,
+
+  "name": "후방주의",
+  "description": "Image Blocker",
+  "version": "1.0",
+
+  "content_scripts": [
+    {
+      "matches": ["http://www.naver.com/*", "*://*/*"],
+      "js": ["patch-worker.js", "main.js"]
+    }
+  ],
+
+  "permissions": [
+    "tabs",
+    "<all_urls>"
+  ],
+
+  "web_accessible_resources": ["worker.js"]
+}
