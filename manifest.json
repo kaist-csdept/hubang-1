@@ -5,15 +5,22 @@
   "description": "Image Blocker",
   "version": "1.0",
 
+  "background": {
+    "scripts": ["background.js"]
+  },
+
   "content_scripts": [
     {
-      "matches": ["http://www.naver.com/*", "*://*/*"],
-      "js": ["patch-worker.js", "main.js"]
+      "all_frames": true,
+      "matches": ["<all_urls>"],
+      "js": ["jquery-2.1.4.min.js", "patch-worker.js", "main.js"],
+      "runt_at": "document_start"
     }
   ],
 
   "permissions": [
     "tabs",
+    "storage",
     "<all_urls>"
   ],
 
