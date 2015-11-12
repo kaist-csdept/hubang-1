@@ -29,5 +29,3 @@
   - worker.js를 algorithm 파트가 구현해야함
 - 현재는 단순히 worker.js에서 항상 true를 return해주고, 그 정보를 받아서 main.js에서 가려줌.
 - 가리는 방법은 style에 "display: none"을 추가하는 형태로 구현
-- 
-
