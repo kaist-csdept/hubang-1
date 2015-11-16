@@ -29,3 +29,18 @@
   - worker.js를 algorithm 파트가 구현해야함
 - 현재는 단순히 worker.js에서 항상 true를 return해주고, 그 정보를 받아서 main.js에서 가려줌.
 - 가리는 방법은 style에 "display: none"을 추가하는 형태로 구현
+
+### 11/15 by Minsu
+
+- 현재 부라우저의 팝업 단추를 누르면 뜨는 메인 페이지 작성중
+- 구글 데이터 세이버에서는 http://chartjs.org/에 있는 자바스크립트 파일을 이용하여 그래프를 작성하였음
+- 어플리케이션 enable disable부분은 좀 더 조사가 필요해 보여 일단 enabled 된 상황의 아이콘과 알림글 출력
+- 아이콘들은 모두 급하게 만든 임시 파일이며 후에 수정이 필요
+- thimble.mozilla.org 위 링크를 통해 일차적으로 작성중
+
+### 11/16 by Minsu
+
+- div의 display속성 중 none과 block 그리고 이것을 수정해주는 javascript 파일을 이용하면 어플리케이션
+  enable, disable 단추를 만들 수 있을거라 추측됨
+- 페이지를 넘기는 방식에 대한 구현도 고려할 필요성이 느껴짐(메인 html을 잡고 다른 html들을 불러오기, 혹은 
+  display 속성을 이용하여 구현 등)
