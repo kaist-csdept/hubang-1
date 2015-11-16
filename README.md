@@ -42,5 +42,3 @@
 
 - div의 display속성 중 none과 block 그리고 이것을 수정해주는 javascript 파일을 이용하면 어플리케이션
   enable, disable 단추를 만들 수 있을거라 추측됨
-- 페이지를 넘기는 방식에 대한 구현도 고려할 필요성이 느껴짐(메인 html을 잡고 다른 html들을 불러오기, 혹은 
-  display 속성을 이용하여 구현 등)
