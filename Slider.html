@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script>
+        $(function() {
+            $('#test').on('change',function() {
+                $('#log').text( $(this).val() );
+            });
+        });
+    </script>
+
+</head>
+<body>
+
+<div>
+    <input id="test" type="range" min="0" max="100" value="50"/>
+</div>
+
+<div id="log"></div>
+
+</body>
+</html>
