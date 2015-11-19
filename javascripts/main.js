@@ -1,14 +1,14 @@
-var settings = null;
+var power = null;
 
-chrome.storage.local.get("settings", function (s) {
-  settings = s.settings;
+chrome.storage.local.get("power", function (s) {
+  power = s.power;
   run(window);
 });
 
 function run(win) {
   if (!win) return;
   var doc = win.document;
-  if (!settings.on) return;
+  if (!power) return;
 
   $("img").each(function () {
     $(this).hide();
