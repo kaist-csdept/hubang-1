@@ -1,0 +1,40 @@
+body {
+  margin: 0px;
+  width: 420px;
+}
+
+.header {
+  background-color: #556FB5;
+
+  height: 60px;
+  line-height: 60px;
+  padding: 5px;
+
+  text-align: center;
+  vertical-align: middle;
+
+  font-size: 30px;
+  color: white;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.back_btn {
+  background-image: url("../images/back.png");
+  background-size: 60px 60px;
+  width: 60px;
+  height: 60px;
+}
+
+.manual_btn {
+  background-image: url("../images/question.png");
+  background-size: 60px 60px;
+  width: 60px;
+  height: 60px;
+}
