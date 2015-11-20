@@ -51,6 +51,20 @@ body {
   margin: 5px;
 }
 
+.save_btn {
+  background-image: url("../images/save.png");
+  background-size: 120px 60px;
+  width: 120px;
+  height: 60px;
+}
+
+.cancel_btn {
+  background-image: url("../images/cancel.png");
+  background-size: 120px 60px;
+  width: 120px;
+  height: 60px;
+}
+
 #power {
   height: 120px;
   width: 120px;
