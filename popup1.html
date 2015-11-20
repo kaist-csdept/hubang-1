@@ -4,14 +4,8 @@
     <title>Hubang Settings</title>
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <meta charset=utf-8" />
-    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-    <script>
-      $(function() {
-        $('#test').on('change',function() {
-          $('#log').text("현재 레벨 : "+$(this).val());
-        });
-      });
-    </script>
+    <script src="lib/jquery-2.1.4.min.js"></script>
+    <script src="javascripts/popup1.js"></script>
   </head>
   <body>
     <div class="header">
@@ -47,12 +41,12 @@
           아래의 슬라이더가 왼쪽에 가까울수록 느슨한<br>
           차단정책이 적용되며, 오른쪽에 가까울수록 엄격한<br>
           차단정책이 적용됩니다.<br><br>
-          <div id="textlog">현재 설정은 0 입니다.</div>
+          <div id="textlog"></div>
         </div>
         <div id="Hb-body2-2" style="text-align:left;margin:10px 0px 0px 50px; width:380px;height:100px">
           <div>
-            <input id="test" type="range" min="0" max="5" value="0"/>
-            <div id="log">현재 레벨 : </div>
+            <input id="test" type="range" min="0" max="4" value="0"/>
+            <div id="log">현재 레벨 : 0</div>
           </div>
         </div>
         <br>

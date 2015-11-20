@@ -55,6 +55,7 @@ body {
   height: 120px;
   width: 120px;
   cursor: pointer;
+  margin: 100px 0px 0px 150px;
 }
 
 #power.on {
@@ -66,3 +67,4 @@ body {
   background-image: url("../images/sleeping.png");
   background-size: 120px 120px;
 }
+
