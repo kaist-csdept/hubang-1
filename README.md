@@ -49,4 +49,6 @@
   level (integer(0~4)) : 프리셋 레벨
   tlevel (integer(0~4)) : 프리셋 임시 레벨
   preset? (boolean) : 프리셋을 이용하는 경우 확인
+  tresult1~tresult10 (boolean) : 이미지 차단여부를 저장한 임시 변수
+  result1~result10 (boolean) : 이미지 차단여부를 저장한 변수
   <a> 타입에서 onclick이 제대로 실행되지 않기에 빈 html파일을 생성한 다음 함수를 실행한 다음에 location.href='popup.html'를 이용하여 목적 html로 이동
