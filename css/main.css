@@ -82,11 +82,18 @@ body {
   background-size: 120px 120px;
 }
 
-.button {
+.buttona{
+  width: 120px;
+  height: 60px;
+  text-decoration:none !important
+}
+
+.buttond {
   width: 120px;
   height: 60px;
   background-color: #556FB5;
   color: white;
   font-size: 20px;
   text-align: center;
+  line-height: 60px;
 }
