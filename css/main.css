@@ -1,0 +1,99 @@
+﻿body {
+  margin: 0px;
+  width: 420px;
+}
+
+.header {
+  background-color: #556FB5;
+
+  height: 60px;
+  padding: 5px;
+
+  text-align: center;
+
+  font-size: 30px;
+  color: white;
+}
+
+.header_text {
+  width: 80%;
+  position: absolute;
+  left: 10%;
+  text-align: center;
+  line-height: 60px;
+}
+
+.body {
+  margin: 10px;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.back_btn {
+  background-image: url("../images/back.png");
+  background-size: 50px 50px;
+  width: 50px;
+  height: 50px;
+  margin: 5px;
+}
+
+.manual_btn {
+  background-image: url("../images/question.png");
+  background-size: 50px 50px;
+  width: 50px;
+  height: 50px;
+  margin: 5px;
+}
+
+.save_btn {
+  background-image: url("../images/save.png");
+  background-size: 120px 60px;
+  width: 120px;
+  height: 60px;
+}
+
+.cancel_btn {
+  background-image: url("../images/cancel.png");
+  background-size: 120px 60px;
+  width: 120px;
+  height: 60px;
+}
+
+#power {
+  height: 120px;
+  width: 120px;
+  cursor: pointer;
+  margin: 100px 0px 0px 150px;
+}
+
+#power.on {
+  background-image: url("../images/working.png");
+  background-size: 120px 120px;
+}
+
+#power.off {
+  background-image: url("../images/sleeping.png");
+  background-size: 120px 120px;
+}
+
+.buttona{
+  width: 120px;
+  height: 60px;
+  text-decoration:none !important
+}
+
+.buttond {
+  width: 120px;
+  height: 60px;
+  background-color: #556FB5;
+  color: white;
+  font-size: 20px;
+  text-align: center;
+  line-height: 60px;
+}
