@@ -82,3 +82,11 @@ body {
   background-size: 120px 120px;
 }
 
+.button {
+  width: 120px;
+  height: 60px;
+  background-color: #556FB5;
+  color: white;
+  font-size: 20px;
+  text-align: center;
+}
