@@ -1,4 +1,4 @@
-chrome.storage.local.get("power", function (s) {
+﻿chrome.storage.local.get("power", function (s) {
   if (s.power) {
     $("#power").addClass("on");
 	$("#plugin_ment").text("후방주의 플러그인이 현재 작동중입니다.");
