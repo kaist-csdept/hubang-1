@@ -31,3 +31,7 @@ $("#power").click(function () {
     refresh();
   }
 });
+
+$("#go_settings").click(function(){
+  location.href='settings.html';
+});

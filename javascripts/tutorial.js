@@ -12,6 +12,8 @@ function load_next_image() {
 }
 
 function save(idx, result) {
+  String iresult="result"+idx;
+  chrome.storage.local.set({iresult: result});
 }
 
 $("#yes_btn").click(function () {
