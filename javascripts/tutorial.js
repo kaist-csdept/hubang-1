@@ -12,7 +12,7 @@ function load_next_image() {
 }
 
 function save(idx, result) {
-  String iresult="result"+idx;
+  var result="result"+idx;
   chrome.storage.local.set({iresult: result});
 }
 
