@@ -5,26 +5,38 @@ chrome.storage.local.get("power", function (s) {
   run(window);
 });
 
-function check(data, width, height) {
-  // (r, g, b, ?) = (data[4i], data[4i+1], data[4i+2], data[4i+3])
-  return true;
-}
+var canvas = document.createElement("canvas");
+var ctx = canvas.getContext("2d");
 
-function checkAndHide(imgElement) {
-  var canvas = document.createElement("canvas");
-  var ctx = canvas.getContext("2d");
-
+function checkAndShow(img) {
+  var worker = new Worker(chrome.runtime.getURL("javascripts/worker.js"));
   var image = new Image;
+  $(img).hide();
   image.crossOrigin = "Anonymous";
-  image.onload = function () {
+  image.onload = function() {
     canvas.width = image.width;
     canvas.height = image.height;
+    if (canvas.width == 0) {
+      worker.terminate();
+      return;
+    }
     ctx.drawImage(image, 0, 0);
-    var imageData = ctx.getImageData(1, 0, canvas.width, canvas.height).data;
-    if (check(imageData, canvas.width, canvas.height))
-      $(imgElement).hide();
+    worker.postMessage([
+        ctx.getImageData(0, 0, canvas.width, canvas.height).data,
+        canvas.width,
+        canvas.height]);
   };
-  image.src = imgElement.src;
+  image.src = img.src;
+
+  worker.onmessage = function(event) {
+    if (event.data) {
+      console.log("hide");
+    } else {
+      console.log("not hide");
+      $(img).show();
+    }
+    worker.terminate();
+  };
 }
 
 function run(win) {
@@ -33,21 +45,31 @@ function run(win) {
   if (!power) return;
 
   $("img").each(function () {
-    checkAndHide(this);
+    $(this).hide();
   });
 
+  $("img").each(function () {
+    checkAndShow(this);
+  });
+
+  /*
   $("iframe").ready(function () {
     $(this).contents().find("img").each(function () {
+      console.log("call");
       checkAndHide(this);
     });
   });
+  */
 
   var observer = new MutationObserver(function (mutations) {
     mutations.forEach(function (m) {
       var newNodes = m.addedNodes;
       if (newNodes !== null) {
         $(newNodes).find("img").each(function () {
-          checkAndHide(this);
+          $(this).hide();
+        });
+        $(newNodes).find("img").each(function () {
+          checkAndShow(this);
         });
       }
     });
