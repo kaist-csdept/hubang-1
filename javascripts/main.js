@@ -1,14 +1,18 @@
 var power = null;
+var level = null;
 
-chrome.storage.local.get("power", function (s) {
+chrome.storage.local.get(["power", "level"], function (s) {
   power = s.power;
+  level = s.level;
+  console.log(power);
+  console.log(level);
   run(window);
 });
 
 var canvas = document.createElement("canvas");
 var ctx = canvas.getContext("2d");
 
-var N = 16;
+var N = 4;
 var workers = [];
 for (var i = 0; i < N; i ++) {
   workers.push(new Worker(chrome.runtime.getURL("javascripts/worker.js")));
@@ -23,10 +27,9 @@ function checkAndShow(img) {
   var i = imgs.length - 1;
   image.crossOrigin = "Anonymous";
   image.onload = function() {
-    canvas.width = Math.min(image.width, 100);
-    canvas.height = Math.min(image.height, 100);
+    canvas.width = image.width;
+    canvas.height = image.height;
     if (canvas.width == 0) {
-      worker.terminate();
       return;
     }
     ctx.drawImage(image, 0, 0);
@@ -34,7 +37,7 @@ function checkAndShow(img) {
         ctx.getImageData(0, 0, canvas.width, canvas.height).data,
         canvas.width,
         canvas.height,
-        i]);
+        i, level]);
   };
   image.src = img.src;
 

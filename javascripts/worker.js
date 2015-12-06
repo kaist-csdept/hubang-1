@@ -8,7 +8,8 @@
 var skinRegions = [],
     skinMap = [],
     canvas = {},
-    imageIndex = 0;
+    imageIndex = 0,
+    level = 0;
 
 onmessage = function(event){
   canvas.width = event.data[1];
@@ -16,6 +17,7 @@ onmessage = function(event){
   skinRegions = [];
   skinMap = [];
   imageIndex = event.data[3];
+  level = event.data[4];
   scanImage(event.data[0]);
 };
 
@@ -234,8 +236,11 @@ function analyseRegions(){
     totalSkin += skinRegions[length].length;
   }
 
+  var ratio = 1.0 - 0.3 * (level - 2);
+  //var ratio = 1.0 ;
+
   // check if there are more than 15% skin pixel in the image
-  if((totalSkin/totalPixels)*100 < 15){
+  if((totalSkin/totalPixels)*100 < 15 * ratio){
     // if the percentage lower than 15, it's not nude!
     //console.log("it's not nude :) - total skin percent is "+((totalSkin/totalPixels)*100)+"% ");
     postMessage([false, imageIndex]);
@@ -245,9 +250,9 @@ function analyseRegions(){
   // check if the largest skin region is less than 35% of the total skin count
   // AND if the second largest region is less than 30% of the total skin count
   // AND if the third largest region is less than 30% of the total skin count
-  if((skinRegions[0].length/totalSkin)*100 < 35 
-      && (skinRegions[1].length/totalSkin)*100 < 30
-      && (skinRegions[2].length/totalSkin)*100 < 30){
+  if((skinRegions[0].length/totalSkin)*100 < 35  * ratio
+      && (skinRegions[1].length/totalSkin)*100 < 30 * ratio
+      && (skinRegions[2].length/totalSkin)*100 < 30 * ratio){
     // the image is not nude.
     //console.log("it's not nude :) - less than 35%,30%,30% skin in the biggest areas :" + ((skinRegions[0].length/totalSkin)*100) + "%, " + ((skinRegions[1].length/totalSkin)*100)+"%, "+((skinRegions[2].length/totalSkin)*100)+"%");
     postMessage([false, imageIndex]);
@@ -256,7 +261,7 @@ function analyseRegions(){
   }
 
   // check if the number of skin pixels in the largest region is less than 45% of the total skin count
-  if((skinRegions[0].length/totalSkin)*100 < 45){
+  if((skinRegions[0].length/totalSkin)*100 < 45 * ratio){
     // it's not nude
     //console.log("it's not nude :) - the biggest region contains less than 45%: "+((skinRegions[0].length/totalSkin)*100)+"%");
     postMessage([false, imageIndex]);
@@ -276,7 +281,7 @@ function analyseRegions(){
   // TODO: include bounding polygon functionality
   // if there are more than 60 skin regions and the average intensity within the polygon is less than 0.25
   // the image is not nude
-  if(skinRegions.length > 60){
+  if(skinRegions.length > 60 / ratio){
     //console.log("it's not nude :) - more than 60 skin regions");
     postMessage([false, imageIndex]);
     return;
