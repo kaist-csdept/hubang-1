@@ -1,9 +1,55 @@
 var power = null;
+var level = null;
 
-chrome.storage.local.get("power", function (s) {
+chrome.storage.local.get(["power", "level"], function (s) {
   power = s.power;
+  level = s.level;
+  console.log(power);
+  console.log(level);
   run(window);
 });
+
+var canvas = document.createElement("canvas");
+var ctx = canvas.getContext("2d");
+
+var N = 4;
+var workers = [];
+for (var i = 0; i < N; i ++) {
+  workers.push(new Worker(chrome.runtime.getURL("javascripts/worker.js")));
+}
+
+var imgs = [];
+
+function checkAndShow(img) {
+  var image = new Image;
+  $(img).hide();
+  imgs.push(img);
+  var i = imgs.length - 1;
+  image.crossOrigin = "Anonymous";
+  image.onload = function() {
+    canvas.width = image.width;
+    canvas.height = image.height;
+    if (canvas.width == 0) {
+      return;
+    }
+    ctx.drawImage(image, 0, 0);
+    workers[i%N].postMessage([
+        ctx.getImageData(0, 0, canvas.width, canvas.height).data,
+        canvas.width,
+        canvas.height,
+        i, level]);
+  };
+  image.src = img.src;
+
+  workers[i%N].onmessage = function(event) {
+    if (event.data[0]) {
+      console.log("hide : " + imgs[event.data[1]].src);
+    } else {
+      console.log("not hide : " + imgs[event.data[1]].src);
+      $(imgs[event.data[1]]).show();
+    }
+  };
+}
 
 function run(win) {
   if (!win) return;
@@ -14,13 +60,18 @@ function run(win) {
     $(this).hide();
   });
 
+  $("img").each(function () {
+    checkAndShow(this);
+  });
+
+  /*
   $("iframe").ready(function () {
-    console.log(this);
-    console.log($(this).contents().find("img"))
     $(this).contents().find("img").each(function () {
-      $(this).hide();
+      console.log("call");
+      checkAndHide(this);
     });
   });
+  */
 
   var observer = new MutationObserver(function (mutations) {
     mutations.forEach(function (m) {
@@ -28,6 +79,9 @@ function run(win) {
       if (newNodes !== null) {
         $(newNodes).find("img").each(function () {
           $(this).hide();
+        });
+        $(newNodes).find("img").each(function () {
+          checkAndShow(this);
         });
       }
     });

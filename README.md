@@ -42,6 +42,10 @@
 
 - div의 display속성 중 none과 block 그리고 이것을 수정해주는 javascript 파일을 이용하면 어플리케이션
   enable, disable 단추를 만들 수 있을거라 추측됨
+
+### 11/19 by YoungSoo
+- tutorial page 생성
+- javascript 이용해서 tutorial page 1개로 돌아가게 수정
   
 ### 11/22 by Minsu
 - 몇 가지 chrome.storage 속성들
@@ -52,3 +56,8 @@
 - tresult1~tresult10 (boolean) : 이미지 차단여부를 저장한 임시 변수
 - result1~result10 (boolean) : 이미지 차단여부를 저장한 변수
 - <a> 타입에서 onclick이 제대로 실행되지 않기에 빈 html파일을 생성한 다음 함수를 실행한 다음에 location.href='popup.html'를 이용하여 목적 html로 이동
+
+### 11/25 by YoungSoo
+- tutorial page 포맷 맞추기 및 sample img 수정
+- 사진 10개 체크 이후 페이지 tutorial_end page 생성
+- 추후에 알고리즘 완성되면 나서 레벨 설정되는 부분 추가 필요
