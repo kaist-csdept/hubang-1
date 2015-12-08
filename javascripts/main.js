@@ -4,8 +4,6 @@ var level = null;
 chrome.storage.local.get(["power", "level"], function (s) {
   power = s.power;
   level = s.level;
-  console.log(power);
-  console.log(level);
   run(window);
 });
 
@@ -19,6 +17,9 @@ for (var i = 0; i < N; i ++) {
 }
 
 var imgs = [];
+
+var total_image = 0;
+var nude_image = 0;
 
 function checkAndShow(img) {
   var image = new Image;
@@ -42,12 +43,15 @@ function checkAndShow(img) {
   image.src = img.src;
 
   workers[i%N].onmessage = function(event) {
+    total_image += 1;
     if (event.data[0]) {
-      console.log("hide : " + imgs[event.data[1]].src);
+      // console.log("hide : " + imgs[event.data[1]].src);
+      nude_image += 1;
     } else {
-      console.log("not hide : " + imgs[event.data[1]].src);
+      // console.log("not hide : " + imgs[event.data[1]].src);
       $(imgs[event.data[1]]).show();
     }
+    console.log(total_image);
   };
 }
 
