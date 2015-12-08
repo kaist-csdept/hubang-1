@@ -1,4 +1,4 @@
 *.swp
 Thumbs.db
-dataset
-dataset*
+dataset/?_*
+dataset*.zip
