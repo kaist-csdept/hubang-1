@@ -1,5 +1,4 @@
-var cur_idx = 1;
-var yes_counter = 0;
+var cur_idx = 0;
 
 var img = $("#test_image")[0];
 
@@ -12,14 +11,19 @@ function refresh() {
   });
 }
 
+var levels = [0, 2, 3, 5, 5, 1, 5, 4];
+var n = levels.length;
+var m = 6;
+var avg_level = 0;
+
 function load_next_image() {
   cur_idx += 1;
-  if (cur_idx <= 10) {
-    img.src = "../images/test" + cur_idx + ".png";
+  if (cur_idx <= n) {
+    img.src = "../images/test" + cur_idx + ".jpg";
     $("#description").text(cur_idx.toString());
   }
   else {
-    var new_level = Math.floor(yes_counter / 2.5);
+    var new_level = Math.round(avg_level / m);
     console.log(new_level);
     chrome.storage.local.set({"level": new_level});
     refresh();
@@ -27,14 +31,15 @@ function load_next_image() {
   }
 }
 
-function save(idx, result) {
-  if (result)
-    yes_counter += 1;
+load_next_image();
 
-  $("#check").text(yes_counter.toString());
+var logs = ["매우 낮음", "낮음", "보통", "높음", "매우 높음"];
+function save(idx, result) {
+  $("#check").text(logs[Math.round(avg_level / (m*(cur_idx/n)))]);
 }
 
 $("#yes_btn").click(function () {
+  avg_level += levels[cur_idx-1];
   save(cur_idx, true);
   load_next_image();
 });
