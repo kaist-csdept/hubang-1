@@ -19,7 +19,7 @@ var avg_level = 0;
 function load_next_image() {
   cur_idx += 1;
   if (cur_idx <= n) {
-    img.src = "../images/test" + cur_idx + ".jpg";
+    img.src = "../images/test" + cur_idx + "_blur.jpg";
     $("#description").text(cur_idx.toString());
   }
   else {
